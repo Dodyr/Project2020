@@ -20,16 +20,29 @@ bool find_and_kill(TList& list)
 {
 	bool isOdd = false;
 	TList p = list;
-	while (p && !isOdd)
-	{
-		if (p->info % 2 != 0)
-			isOdd = true;
-		if (!isOdd)
-		    p = p->next;
-	}
-	while (p && p->info % 2 != 0)
+	if (p->info % 2 != 0)
 	{
 		Delete(p);
+		isOdd = true;
+		while (p && p->info % 2 != 0)
+		{
+			Delete(p);
+		}
+		list = p;
+	}
+	else
+	{
+		while (p->next && !isOdd)
+		{
+			if (p->next->info % 2 != 0)
+				isOdd = true;
+			if (!isOdd)
+				p = p->next;
+		}
+		while (p->next && p->next->info % 2 != 0)
+		{
+			Delete(p->next);
+		}
 	}
 	return isOdd;
 }

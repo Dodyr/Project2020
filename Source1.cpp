@@ -92,7 +92,7 @@ void print(TList list, std::ofstream& fout, bool bo)
 		fout << p->info << " ";
 		p = p->next;
 	}
-	if (bo)
+	if (!bo)
 	{
 		fout << std::endl << "Ќечетных чисел в последовательности нету.";
 	}
